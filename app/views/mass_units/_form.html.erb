@@ -1,0 +1,22 @@
+<%= form_with(model: mass_unit, local: true) do |form| %>
+  <% if mass_unit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mass_unit.errors.count, "error") %> prohibited this mass_unit from being saved:</h2>
+
+      <ul>
+      <% mass_unit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :unit %>
+    <%= form.text_field :unit, required: true, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Save Mass Unit', class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+
+<div class="patients-index">
+<p id="notice"><%= notice %></p>
+
+<h1>Mass Units</h1>
+ <%= link_to "New Mass Unit", new_mass_unit_path, class: 'btn btn-info mb-10' %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Unit</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mass_units.each do |mass_unit| %>
+      <tr>
+        <td><%= mass_unit.unit %></td>
+       
+        <td><%= link_to 'Edit', edit_mass_unit_path(mass_unit) %></td>
+        <td><%= link_to 'Destroy', mass_unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+</div>

@@ -1,0 +1,23 @@
+// Place all the styles related to the Patients controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.patients-index table tbody tr:hover {
+  cursor: pointer;
+  background-color: #CBEBF4;
+}
+
+.summary-table {
+  border-left: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+  margin-bottom: 0 !important;
+}
+
+.form-title {
+  background-color: #cecece;
+}

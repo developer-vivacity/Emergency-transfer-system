@@ -1,0 +1,18 @@
+I"¡(function() {
+  $(document).on('turbolinks:load', function() {
+    $("table tbody tr").on('click', (function(_this) {
+      return function(event) {
+        var href;
+        href = $(event.target).parent().data("href");
+        if (href) {
+          return window.location = href;
+        }
+      };
+    })(this));
+    return $('.jq-datepicker').datepicker({
+      format: 'dd/mm/yyyy'
+    });
+  });
+
+}).call(this);
+:ET

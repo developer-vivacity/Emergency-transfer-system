@@ -1,0 +1,20 @@
+<%= form_with(model: observation, local: true) do |form| %>
+  <% if observation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(observation.errors.count, "error") %> prohibited this observation from being saved:</h2>
+
+      <ul>
+      <% observation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_field :description, required: true, class: 'form-control' %>
+  </div>
+  <div class="actions">
+    <%= form.submit 'Save Observations', class: 'btn btn-primary' %>
+  </div>
+<% end %>

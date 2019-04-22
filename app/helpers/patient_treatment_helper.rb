@@ -1,0 +1,3 @@
+module PatientTreatmentHelper
+
+end

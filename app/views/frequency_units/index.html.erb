@@ -1,0 +1,24 @@
+<div class="patients-index">
+
+<h1>Frequency Units</h1>
+<%= link_to "New Frequency Unit", new_frequency_unit_path, class: 'btn btn-info mb-10' %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @frequency_units.each do |frequency_unit| %>
+      <tr>
+        <td><%= frequency_unit.name %></td>
+        <td><%= link_to 'Show', frequency_unit %></td>
+        <td><%= link_to 'Edit', edit_frequency_unit_path(frequency_unit) %></td>
+        <td><%= link_to 'Destroy', frequency_unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

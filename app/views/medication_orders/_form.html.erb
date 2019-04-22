@@ -1,0 +1,48 @@
+<%= form_with(model: medication_order, local: true) do |form| %>
+  <% if medication_order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(medication_order.errors.count, "error") %> prohibited this medication_order from being saved:</h2>
+
+      <ul>
+      <% medication_order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control', required: true %>
+  </div>
+  <div class="form-group">
+    <select name="medication_order[unit]" class="form-control">
+    
+      <option value="">Select Unit</option>
+    <% if @mass_unit.present? %>
+      <% @mass_unit.each do |mass_unit| %>  
+        <option value="<%= mass_unit.id %>" <% if @medication_order.present? %><% if @medication_order.unit == mass_unit.id %> selected<% end %> <% end %> ><%= mass_unit.unit %></option>
+      <% end %>
+    <% end %>
+    </select>
+  </div>
+  <div class="form-group">
+    <%= form.label :dosage %>
+    <%= form.text_field :dosage, class: 'form-control', required: true %>
+  </div>
+
+  <div class="form-group">
+    <select name="medication_order[route]" class="form-control">
+    
+      <option value="">Select Route</option>
+    <% if @medication_route.present? %>
+      <% @medication_route.each do |medication_route| %>  
+        <option value="<%= medication_route.id %>" <% if @medication_order.present? %><% if @medication_order.route == medication_route.id %> selected<% end %> <% end %> ><%= medication_route.name %></option>
+      <% end %>
+    <% end %>
+    </select>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

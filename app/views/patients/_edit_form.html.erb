@@ -1,0 +1,79 @@
+<%= form_for @patient do |f| %>
+  <div class="form-group">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, class: 'form-control', placeholder: 'Enter First Name' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :middle_name %>
+    <%= f.text_field :middle_name, class: 'form-control', placeholder: 'Enter Middle Name' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, class: 'form-control', placeholder: 'Enter Last Name' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :mr, "MR#" %>
+    <%= f.text_field :mr, class: 'form-control', placeholder: 'Enter MR#' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :date_of_birth, "Date of Birth" %>
+    <%= f.text_field :date_of_birth, value: @patient.date_of_birth, class: 'form-control jq-datepicker', 
+      placeholder: 'Enter Date of Birth', 'autocomplete': 'off' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :gender %>
+    <%= f.select :gender, Patient.genders.keys.map{ |g| [g.humanize, g]}.unshift(["Select", ""]), {}, class: 'form-control'  %>
+  </div>
+  <div class="form-group">
+    <label>Allergies</label>
+    <select name="allergies_id" class="form-control">
+      <option>Select Allergies</option>
+      <% Allergy.all.each do |allergies| %>
+        <option value="<%= allergies.id %>" <% if @patient.allergies_id.present? %> <% if @patient.allergies_id == allergies.id %> selected <% end %><% end %>><%= allergies.description %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Dygnosis</label>
+    <select name="dygnosis_id" class="form-control">
+      <option>Select Dygnosis</option>
+      <% Diagnosis.all.each do |dygnosis| %>
+        <option value="<%= dygnosis.id %>" <% if @patient.dygnosis_id.present? %> <% if @patient.dygnosis_id == dygnosis.id %> selected <% end %><% end %>><%= dygnosis.description %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Dygnostic Procedure</label>
+    <select name="dygnosis_procedure_id" class="form-control">
+      <option>Select Dygnostic Procedure</option>
+      <% DiagnosticProcedure.all.each do |dygnosis| %>
+        <option value="<%= dygnosis.id %>" <% if @patient.dygnosis_procedure_id.present? %> <% if @patient.dygnosis_procedure_id == dygnosis.id %> selected <% end %><% end %>><%= dygnosis.description %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Medication</label>
+    <select name="medications_id" class="form-control">
+      <option>Select Medications</option>
+      <% MedicationOrder.all.each do |med| %>
+        <option value="<%= med.id %>" <% if @patient.medications_id.present? %> <% if @patient.medications_id == med.id %> selected <% end %><% end %>><%= med.name %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Treatments</label>
+    <select name="treatments_id" class="form-control">
+      <option>Select Treatments</option>
+      <% Treatment.all.each do |med| %>
+        <option value="<%= med.id %>" <% if @patient.treatments_id.present? %> <% if @patient.treatments_id == med.id %> selected <% end %><% end %>><%= med.description %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Admission date and time</label>
+    <input type="text" class="form-control jq-datepicker1" name="admission_id" value="<%= @patient.admission_id.present? ? @patient.admission_id : '' %>"></input>
+  </div>
+  
+  <%= edit_form_btn(f) %>
+  <%= emergency_summary_btn(f) %>
+<% end %>

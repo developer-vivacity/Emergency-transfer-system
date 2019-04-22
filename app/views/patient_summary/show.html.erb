@@ -1,0 +1,78 @@
+
+<%= link_to 'Go Back', :back, :class => "btn btn-secondary", :style => "float: right; margin-bottom: 10px;" %>
+<table class="table summary-table">
+  <thead>
+    <tr class="form-title">
+      <th>Emergency Transfer Summary Of Patient</th>
+    </tr>
+  </thead>
+</table>
+
+<table class="table summary-table">
+  <thead>
+    <tr>
+      <th>Transferring Facility</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Name<br>
+        <%= @facility.name %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table summary-table">
+  <thead>
+    <tr>
+      <th>Patient Information</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td id="first_name">First Name <br> <%= @patient.first_name %></td>
+      <td id="middle_name">Middle Name <br> <%= @patient.middle_name %></td>
+      <td id="last_name">Last Name <br> <%= @patient.last_name %></td>
+      <td id="mr">Medical Record (MR) <br> <%= @patient.mr %></td>
+    </tr>
+  </tbody>
+</table>
+  
+<table class="table summary-table">
+  <thead>
+    <tr>
+      <th>Summary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <p>
+          This <%= @patient.age %> years old <%= @patient.gender %> was admitted to <%= @facility.name %> 
+          on <%= @patient.admission_id && @patient.admission_id %> 
+          due to <%= @dignosis && @dignosis.description %>. 
+          The observed symptoms on admission were <%= to_sentence Symptom.all.map(&:description) %>. 
+          <%= @patient.admission_id && @patient.admission_id %>.
+        </p>
+        <p>
+          Upon asking about known allergies, the patient disclosed <%= @allergies && @allergies.description %>. 
+          Upon asking about chronic conditions, the patient disclosed <%= @dignosis && @dignosis.description %>. 
+          The patient was administered with <%= @medications && @medications.name %>.
+        </p>
+        <p>
+          The staff performed <%= @dignosis_procedure && @dignosis_procedure.description %>, 
+          revealing <%= to_sentence @patient.diagnoses && @patient.diagnoses.map(&:described_code) %>. Our team proceeded to 
+          <%= @treatments && @treatments.description %>.
+        </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Print Summary', '#', class: 'btn btn-primary no-print', id: 'summary_print_btn' %>
+

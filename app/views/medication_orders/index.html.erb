@@ -1,0 +1,37 @@
+<div class="patients-index">
+
+<h1>Medication Orders</h1>
+ <%= link_to "New Medication Order", new_medication_order_path, class: 'btn btn-info mb-10' %>
+<table class="table">
+  <thead>
+    <tr>
+      
+      <th>Name</th>
+      <th>Unit</th>
+      <th>Dosage</th>
+      <th>Route</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @medication_orders.each do |medication_order| %>
+      <tr>
+      <% if medication_order.present? %>
+        <td><%= medication_order.name %></td>
+        <% 
+        med_or = medication_order.unit.to_i 
+        %>
+        <% @massunit = MassUnit.find_by_id(med_or) %>
+        <td><%= @massunit.unit %></td>
+        <td><%= medication_order.dosage %></td>
+        <% @medroute = MedicationRoute.find_by_id(medication_order.route) %>
+        <td><%= @medroute.name %></td>
+        <td><%= link_to 'Edit', edit_medication_order_path(medication_order) %></td>
+        <td><%= link_to 'Destroy', medication_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

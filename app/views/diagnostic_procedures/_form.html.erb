@@ -1,0 +1,23 @@
+<%= form_with(model: diagnostic_procedure, local: true) do |form| %>
+  <% if diagnostic_procedure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(diagnostic_procedure.errors.count, "error") %> prohibited this diagnostic_procedure from being saved:</h2>
+
+      <ul>
+      <% diagnostic_procedure.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_field :description, class: 'form-control', required: true %>
+  </div>
+
+    <%= form.hidden_field :moment, value: Time.now %>
+
+  <div class="actions">
+    <%= form.submit 'Save Diagnostic Procedure', class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+class MedicationRoute < ApplicationRecord
+end
